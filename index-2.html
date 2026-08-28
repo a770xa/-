@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Кориям 🤍</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Georgia,serif;background:#090811;color:#fff}
+.screen{height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;
+background:radial-gradient(circle at 50% 35%,#3b2850 0,#171222 38%,#080810 78%)}
+.card{max-width:650px;animation:in 1s ease}.tag{font:11px Arial;letter-spacing:4px;text-transform:uppercase;color:#cfc1df}
+h1{font-size:clamp(44px,12vw,82px);font-weight:400;line-height:1;margin:18px 0}
+p{font:17px/1.75 Arial;color:#e7e0ec}
+button{border:1px solid #b99bd1;background:rgba(255,255,255,.04);color:#fff;border-radius:30px;
+padding:14px 28px;font-size:16px;cursor:pointer;margin-top:18px;transition:.25s}
+button:hover{background:#b99bd1;color:#100b15;transform:translateY(-2px)}
+.hidden{display:none}.heart{font-size:35px;color:#e7d7f5}.dots{margin-top:24px;color:#8f7aa4;font:12px Arial}
+.star{position:fixed;color:#fff;opacity:.4;animation:rise 8s linear infinite;pointer-events:none}
+@keyframes in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes rise{from{transform:translateY(110vh);opacity:0}20%{opacity:.45}to{transform:translateY(-10vh);opacity:0}}
+</style>
+</head>
+<body>
+
+<audio id="music" loop preload="none"></audio>
+
+<section class="screen" id="s1">
+<div class="card">
+<div class="tag">маленький сюрприз</div>
+<div class="heart">♡</div>
+<h1>Рисолат</h1>
+<p>Кориям…<br>это просто маленькая страница, которую я сделал для тебя.</p>
+<button onclick="start()">Открыть ✨</button>
+<div class="dots">нажми — и начнём</div>
+</div>
+</section>
+
+<section class="screen hidden" id="s2">
+<div class="card">
+<div class="tag">глава 01</div>
+<h1>Мы</h1>
+<p>Мы не встречаемся.<br>И, наверное, именно поэтому я не буду придумывать громких слов.</p>
+<button onclick="go(2)">Дальше →</button>
+</div>
+</section>
+
+<section class="screen hidden" id="s3">
+<div class="card">
+<div class="tag">глава 02</div>
+<h1>Но всё равно...</h1>
+<p>Ты стала человеком, с которым хочется говорить,<br>смеяться и делиться всякой ерундой.</p>
+<button onclick="go(3)">Ещё →</button>
+</div>
+</section>
+
+<section class="screen hidden" id="s4">
+<div class="card">
+<div class="tag">глава 03</div>
+<h1>Кориям 🤍</h1>
+<p>Не знаю, куда нас приведёт эта история.<br>
+И не хочу торопить её.<br><br>
+Мне просто нравится то, что есть между нами сейчас.</p>
+<button onclick="go(4)">Последнее</button>
+</div>
+</section>
+
+<section class="screen hidden" id="s5">
+<div class="card">
+<div class="heart">✦</div>
+<h1>Рисолат, улыбнись.</h1>
+<p>Вот и весь мой секретный сюрприз.<br><br>
+А продолжение…<br><b>покажет время.</b> 🤍</p>
+</div>
+</section>
+
+<script>
+const music=document.getElementById('music');
+// Чтобы добавить свою аудиозапись, положи файл рядом с index.html
+// и назови его song.mp3, затем раскомментируй следующую строку:
+// music.src='song.mp3';
+
+function start(){
+  // Если добавишь song.mp3, музыка начнёт играть после этого клика.
+  music.play().catch(()=>{});
+  go(1);
+}
+function go(n){
+ document.getElementById('s'+n).classList.add('hidden');
+ document.getElementById('s'+(n+1)).classList.remove('hidden');
+}
+for(let i=0;i<20;i++){
+ const x=document.createElement('div'); x.className='star';
+ x.textContent=Math.random()>.5?'♡':'✦';
+ x.style.left=Math.random()*100+'vw';
+ x.style.animationDelay=Math.random()*8+'s';
+ x.style.fontSize=(12+Math.random()*15)+'px';
+ document.body.appendChild(x);
+}
+</script>
+</body>
+</html>
